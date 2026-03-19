@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prashanth Siripuram — Digital Marketing Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --navy2: #152236;
+    --accent: #00C49A;
+    --accent2: #00A07D;
+    --gold: #F4B942;
+    --offwhite: #F5F2ED;
+    --muted: #8A9BB0;
+    --light: #C8D4E0;
+    --card: #17263A;
+    --card2: #1E3048;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--offwhite);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(13, 27, 42, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--offwhite); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+  .hero-bg-circle.c1 {
+    width: 500px; height: 500px;
+    background: rgba(0,196,154,0.08);
+    top: -100px; right: -100px;
+  }
+  .hero-bg-circle.c2 {
+    width: 350px; height: 350px;
+    background: rgba(244,185,66,0.06);
+    bottom: 0; left: 200px;
+  }
+
+  .hero-grid-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .hero-left { position: relative; z-index: 2; }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.05;
+    color: var(--offwhite);
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.35s forwards;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-title {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.5s forwards;
+  }
+
+  .hero-bio {
+    font-size: 1rem;
+    color: var(--light);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.65s forwards;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent);
+    color: var(--navy);
+    padding: 0.85rem 1.8rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--offwhite);
+    padding: 0.85rem 1.8rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 400;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  /* ── HERO RIGHT: STATS ── */
+  .hero-right {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-left: 4rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.9s forwards;
+  }
+
+  .stat-card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 1.4rem 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+  .stat-card:hover { transform: translateX(6px); border-color: rgba(0,196,154,0.3); }
+
+  .stat-icon {
+    width: 44px; height: 44px;
+    border-radius: 8px;
+    background: rgba(0,196,154,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .stat-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--offwhite);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 4rem; }
+
+  .section-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .section-eyebrow::after {
+    content: '';
+    display: block;
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: 3rem;
+    color: var(--offwhite);
+  }
+
+  /* ── SKILLS ── */
+  .skills-section { background: var(--navy2); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skill-block {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 1.8rem;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .skill-block:hover { border-color: rgba(0,196,154,0.35); transform: translateY(-4px); }
+
+  .skill-block-icon { font-size: 1.6rem; margin-bottom: 1rem; }
+  .skill-block-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--offwhite);
+    margin-bottom: 0.8rem;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill-tag {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.65rem;
+    background: rgba(0,196,154,0.08);
+    border: 1px solid rgba(0,196,154,0.2);
+    border-radius: 20px;
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-timeline { position: relative; }
+  .exp-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+
+  .exp-item {
+    padding-left: 2.5rem;
+    margin-bottom: 3.5rem;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .exp-item.visible { opacity: 1; transform: translateY(0); }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -4px; top: 6px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px rgba(0,196,154,0.15);
+  }
+
+  .exp-dates {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+
+  .exp-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: var(--offwhite);
+    margin-bottom: 0.2rem;
+  }
+
+  .exp-company {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    font-size: 0.9rem;
+    color: var(--light);
+    padding: 0.3rem 0;
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+  .exp-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 0.45rem;
+  }
+
+  .exp-highlight {
+    display: inline-block;
+    background: rgba(244,185,66,0.1);
+    border: 1px solid rgba(244,185,66,0.2);
+    color: var(--gold);
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    font-family: 'Space Mono', monospace;
+    margin-top: 0.8rem;
+  }
+
+  /* ── HIGHLIGHTS / WINS ── */
+  .wins-section { background: var(--navy2); }
+  .wins-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .win-card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s;
+  }
+  .win-card:hover { transform: translateY(-6px); border-color: rgba(0,196,154,0.3); }
+  .win-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--accent), transparent);
+  }
+
+  .win-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.8rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .win-label {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── TOOLS ── */
+  .tools-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .tool-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    font-size: 0.82rem;
+    color: var(--light);
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .tool-pill:hover { border-color: rgba(0,196,154,0.4); color: var(--offwhite); transform: translateY(-2px); }
+  .tool-pill-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--card);
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .contact-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+  .contact-title em { font-style: italic; color: var(--accent); }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .contact-link:hover { color: var(--accent); }
+  .contact-link svg { width: 16px; height: 16px; }
+
+  /* ── BRIEF CAMPAIGN SECTION ── */
+  .brief-section { background: var(--navy); }
+  .brief-card {
+    background: var(--card);
+    border: 1px solid rgba(0,196,154,0.2);
+    border-radius: 12px;
+    padding: 2.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .brief-card::before {
+    content: 'FEATURED WORK';
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    background: rgba(0,196,154,0.1);
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+    border: 1px solid rgba(0,196,154,0.2);
+  }
+  .brief-card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: var(--offwhite);
+    margin-bottom: 0.5rem;
+  }
+  .brief-card-sub {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+  .brief-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .brief-metric { text-align: center; }
+  .brief-metric-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+  }
+  .brief-metric-label { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+
+  /* ── EDUCATION ── */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+
+  .edu-card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .edu-card:hover { border-color: rgba(0,196,154,0.3); }
+
+  .edu-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .edu-degree {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--offwhite);
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+  }
+  .edu-school { font-size: 0.8rem; color: var(--muted); }
+  .edu-score {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold);
+    background: rgba(244,185,66,0.08);
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 2px; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 1.5rem 4rem;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    border-top: 1px solid rgba(255,255,255,0.04);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.06), transparent);
+    margin: 0 4rem;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
+    .hero-right { padding-left: 0; margin-top: 3rem; }
+    section { padding: 4rem 1.5rem; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .wins-grid { grid-template-columns: 1fr 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .brief-metrics { grid-template-columns: 1fr 1fr; }
+    footer { padding: 1.5rem; }
+    .divider { margin: 0 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">PS // Portfolio</div>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#wins">Highlights</a>
+    <a href="#tools">Tools</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding-top:8rem;">
+  <div class="hero-bg-circle c1"></div>
+  <div class="hero-bg-circle c2"></div>
+  <div class="hero-grid-line" style="left:33%"></div>
+  <div class="hero-grid-line" style="left:66%"></div>
+
+  <div class="hero-left">
+    <div class="hero-eyebrow">Digital Marketing Manager</div>
+    <h1 class="hero-name">Prashanth<br><em>Siripuram</em></h1>
+    <p class="hero-title">10+ Years · SEO · Email · Social Listening · SaaS · E-commerce</p>
+    <p class="hero-bio">
+      I build marketing engines — not just campaigns. From zero-to-pipeline SaaS launches and enterprise-scale social listening, to AI-powered LinkedIn growth and Salesforce Marketing Cloud automation. I connect strategy to results.
+    </p>
+    <div class="hero-ctas">
+      <a href="mailto:siripuram.prashanth@gmail.com" class="btn-primary">
+        ✉ Get in touch
+      </a>
+      <a href="https://in.linkedin.com/in/prashanthsiripuram" target="_blank" class="btn-outline">
+        ↗ LinkedIn
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="stat-card">
+      <div class="stat-icon">📈</div>
+      <div>
+        <div class="stat-val">10+</div>
+        <div class="stat-label">Years of digital marketing experience</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">💰</div>
+      <div>
+        <div class="stat-val">$250K+</div>
+        <div class="stat-label">Marketing budgets managed</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">👥</div>
+      <div>
+        <div class="stat-val">25</div>
+        <div class="stat-label">Team members led across 5 functions</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🏷️</div>
+      <div>
+        <div class="stat-val">18+</div>
+        <div class="stat-label">Brands managed simultaneously</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="section-eyebrow">What I do</div>
+  <h2 class="section-title">Core Competencies</h2>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <div class="skill-block-icon">🔍</div>
+      <div class="skill-block-title">SEO & Content Strategy</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Technical SEO</span>
+        <span class="skill-tag">On-page</span>
+        <span class="skill-tag">Link Building</span>
+        <span class="skill-tag">Keyword Research</span>
+        <span class="skill-tag">Amazon SEO</span>
+        <span class="skill-tag">Content Calendar</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-icon">📧</div>
+      <div class="skill-block-title">Email Marketing</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Brevo</span>
+        <span class="skill-tag">Changeengine</span>
+        <span class="skill-tag">Drip sequences</span>
+        <span class="skill-tag">Segmentation</span>
+        <span class="skill-tag">A/B testing</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-icon">👂</div>
+      <div class="skill-block-title">Social Listening</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Social Studio</span>
+        <span class="skill-tag">Sysomos</span>
+        <span class="skill-tag">Sentiment Analysis</span>
+        <span class="skill-tag">Boolean Queries</span>
+        <span class="skill-tag">Share of Voice</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-icon">⚙️</div>
+      <div class="skill-block-title">Marketing Automation</div>
+      <div class="skill-tags">
+        <span class="skill-tag">SFMC</span>
+        <span class="skill-tag">Journey Builder</span>
+        <span class="skill-tag">SQL Queries</span>
+        <span class="skill-tag">Data Extensions</span>
+        <span class="skill-tag">Automation Studio</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-icon">📱</div>
+      <div class="skill-block-title">Social Media & Paid Ads</div>
+      <div class="skill-tags">
+        <span class="skill-tag">LinkedIn</span>
+        <span class="skill-tag">Facebook Ads</span>
+        <span class="skill-tag">Instagram</span>
+        <span class="skill-tag">Google Ads</span>
+        <span class="skill-tag">Lead Gen</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-icon">🌐</div>
+      <div class="skill-block-title">Web & Design</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Webflow</span>
+        <span class="skill-tag">WordPress</span>
+        <span class="skill-tag">HTML/CSS</span>
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">Adobe CC</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background: var(--navy);">
+  <div class="section-eyebrow">Career</div>
+  <h2 class="section-title">Professional Journey</h2>
+  <div class="exp-timeline">
+
+    <div class="exp-item">
+      <div class="exp-dates">MAY 2024 — PRESENT</div>
+      <div class="exp-role">Lead — Marketing Specialist</div>
+      <div class="exp-company">Revolution Entertainment Services Pvt. Ltd. · Hyderabad</div>
+      <ul class="exp-bullets">
+        <li>Built LinkedIn India page from scratch using AI tools for content creation and audience insights — generating consistent engagement and qualified leads.</li>
+        <li>Ran India sales lead generation campaigns across online and offline channels, contributing directly to the sales pipeline.</li>
+        <li>Executed email marketing campaigns using Changeengine — managing segmentation, design, scheduling and reporting.</li>
+        <li>Built and launched websites for internal brands end-to-end using Webflow.</li>
+      </ul>
+      <span class="exp-highlight">Current role</span>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dates">DEC 2022 — APR 2024</div>
+      <div class="exp-role">Manager — Digital Marketing</div>
+      <div class="exp-company">Critical River Pvt. Ltd. · Hyderabad</div>
+      <ul class="exp-bullets">
+        <li>Owned full GTM strategy for B2B SaaS product "Prokraya" from zero — SEO, email marketing via Brevo, and LinkedIn content.</li>
+        <li>Delivered 20% month-on-month organic traffic growth within 4 months through technical SEO and content strategy.</li>
+        <li>Email campaigns achieved 20% open rate, 6% CTR, and ~10 qualified B2B leads per month.</li>
+        <li>Created and managed LinkedIn and Google Ads campaigns targeting procurement decision-makers.</li>
+      </ul>
+      <span class="exp-highlight">20% MoM organic growth · 6% email CTR</span>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dates">AUG 2020 — DEC 2022</div>
+      <div class="exp-role">Manager — Digital Marketing</div>
+      <div class="exp-company">De Soto Technologies Pvt. Ltd. · Ahmedabad</div>
+      <ul class="exp-bullets">
+        <li>Delivered monthly Social Listening reports for 18+ brands using Salesforce Social Studio — sentiment analysis, CEI, competitor benchmarking.</li>
+        <li>Built automated customer journeys in SFMC Journey Builder; wrote SQL queries for targeted audience Data Extensions.</li>
+        <li>Led Amazon SEO strategy using Helium 10 across 18+ healthcare brands selling on Amazon and Walmart.</li>
+        <li>Managed brand-wide social presence ensuring consistent voice across all platforms.</li>
+      </ul>
+      <span class="exp-highlight">18+ brands · SFMC · Social Studio · Amazon SEO</span>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dates">SEP 2016 — JUL 2020</div>
+      <div class="exp-role">Assistant Manager — Digital Marketing</div>
+      <div class="exp-company">Inspiredge IT Solutions Pvt. Ltd. · Visakhapatnam</div>
+      <ul class="exp-bullets">
+        <li>Promoted from Sr. Executive → Team Lead → Assistant Manager within 2 years.</li>
+        <li>Led 5 specialist teams (Social, SEO, Web Dev, Branding, Content) — 20+ people.</li>
+        <li>Grew "1 Minute Crafts" Instagram from 0 to 100K+ followers organically in 6 months.</li>
+        <li>Moved B2B client Maple from Page 4 to Page 1 on top 5 keywords in 2 months — 25% organic traffic increase.</li>
+        <li>Led social promotions for Hollywood films: The Recall, The Humanity Bureau, The Black Prince.</li>
+      </ul>
+      <span class="exp-highlight">100K followers in 6 months · Page 4 → Page 1 SEO</span>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dates">JUN 2014 — JUL 2016</div>
+      <div class="exp-role">Digital Marketing Executive</div>
+      <div class="exp-company">Lincesoft Solutions Pvt. Ltd. · Hyderabad</div>
+      <ul class="exp-bullets">
+        <li>Managed end-to-end Google Ads PPC setup — keyword research, campaign structure, bid management, and reporting.</li>
+        <li>Executed on-page and off-page SEO across client websites alongside social media community management.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CAREER HIGHLIGHTS -->
+<section class="wins-section" id="wins">
+  <div class="section-eyebrow">By the numbers</div>
+  <h2 class="section-title">Career Highlights</h2>
+  <div class="wins-grid">
+    <div class="win-card">
+      <div class="win-number">$250K+</div>
+      <div class="win-label">Marketing budgets managed across campaigns</div>
+    </div>
+    <div class="win-card">
+      <div class="win-number">100K+</div>
+      <div class="win-label">Instagram followers grown organically in 6 months</div>
+    </div>
+    <div class="win-card">
+      <div class="win-number">20%</div>
+      <div class="win-label">Month-on-month SEO traffic growth in 4 months</div>
+    </div>
+    <div class="win-card">
+      <div class="win-number">18+</div>
+      <div class="win-label">Brands managed simultaneously with social listening</div>
+    </div>
+    <div class="win-card">
+      <div class="win-number">25</div>
+      <div class="win-label">Team members led across 5 marketing functions</div>
+    </div>
+    <div class="win-card">
+      <div class="win-number">90%</div>
+      <div class="win-label">On-time project delivery rate across all campaigns</div>
+    </div>
+    <div class="win-card">
+      <div class="win-number">6%</div>
+      <div class="win-label">Email CTR on B2B SaaS nurture sequences</div>
+    </div>
+    <div class="win-card">
+      <div class="win-number">3×</div>
+      <div class="win-label">Promoted in 2 years — Executive to Asst. Manager</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURED WORK -->
+<section class="brief-section">
+  <div class="section-eyebrow">Sample Work</div>
+  <h2 class="section-title">Featured Campaign Brief</h2>
+  <div class="brief-card">
+    <div class="brief-card-title">Mint Mobile × Recent College Graduates</div>
+    <div class="brief-card-sub">Campaign Brief · Prepared as part of UWorld PMM interview process · 2025</div>
+    <p style="font-size:0.9rem; color:var(--light); line-height:1.7;">
+      A full one-page campaign brief targeting the 2M+ US college graduating class of 2025 — capturing the highest-intent window for new mobile plan sign-ups. Strategy covers audience persona, hero messaging, channel plan across email, social, SEO, and Reddit, with UTM tracking and a 90-day KPI framework.
+    </p>
+    <div class="brief-metrics">
+      <div class="brief-metric">
+        <div class="brief-metric-val">5,000+</div>
+        <div class="brief-metric-label">Target sign-ups in 90 days</div>
+      </div>
+      <div class="brief-metric">
+        <div class="brief-metric-val">≤$25</div>
+        <div class="brief-metric-label">Blended target CPA</div>
+      </div>
+      <div class="brief-metric">
+        <div class="brief-metric-val">$15/mo</div>
+        <div class="brief-metric-label">Hero offer leveraged</div>
+      </div>
+      <div class="brief-metric">
+        <div class="brief-metric-val">6 teams</div>
+        <div class="brief-metric-label">Creative teams briefed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TOOLS -->
+<section id="tools" style="background:var(--navy2);">
+  <div class="section-eyebrow">Tech stack</div>
+  <h2 class="section-title">Tools & Platforms</h2>
+  <div class="tools-grid">
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Salesforce Marketing Cloud</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Salesforce Social Studio</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Sysomos / Brandwatch</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Brevo</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Changeengine</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Helium 10</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Agorapulse</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Hootsuite</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Buffer</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Google Search Console</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Google Analytics (GA4)</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Google Ads</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Ahrefs</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Ubersuggest</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Webflow</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>WordPress</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Figma</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Canva</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Adobe Photoshop</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Adobe Illustrator</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>Jira</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>ClickUp</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>HTML5 / CSS3</div>
+    <div class="tool-pill"><div class="tool-pill-dot"></div>AI Tools (Content & Research)</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section style="background:var(--navy);">
+  <div class="section-eyebrow">Background</div>
+  <h2 class="section-title">Education</h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-year">2009 — 2013</div>
+      <div class="edu-degree">B.Tech — Electronics & Communication Engineering</div>
+      <div class="edu-school">Kakatiya Institute of Technology and Science, Warangal</div>
+      <span class="edu-score">Aggregate: 72%</span>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2007 — 2009</div>
+      <div class="edu-degree">Intermediate — MPC (Maths, Physics, Chemistry)</div>
+      <div class="edu-school">Sri Chaitanya Jr. College, Vijayawada</div>
+      <span class="edu-score">Aggregate: 95.5%</span>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2007</div>
+      <div class="edu-degree">SSC — Secondary School Certificate</div>
+      <div class="edu-school">Thapar Vidya Vihar School, Kamalapuram</div>
+      <span class="edu-score">Aggregate: 88%</span>
+    </div>
+  </div>
+
+  <!-- Certifications -->
+  <div style="margin-top:2.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+    <div style="background:var(--card); border:1px solid rgba(0,196,154,0.2); border-radius:8px; padding:1.2rem 1.5rem; display:flex; align-items:center; gap:1rem;">
+      <span style="font-size:1.4rem;">🏅</span>
+      <div>
+        <div style="font-size:0.9rem; font-weight:500; color:var(--offwhite);">Design Thinking: Customer Experience</div>
+        <div style="font-size:0.78rem; color:var(--muted); margin-top:2px;">LinkedIn Learning · Certified</div>
+      </div>
+    </div>
+    <div style="background:var(--card); border:1px solid rgba(244,185,66,0.2); border-radius:8px; padding:1.2rem 1.5rem; display:flex; align-items:center; gap:1rem;">
+      <span style="font-size:1.4rem;">🎬</span>
+      <div>
+        <div style="font-size:0.9rem; font-weight:500; color:var(--offwhite);">Title Credit — Hollywood Films</div>
+        <div style="font-size:0.78rem; color:var(--muted); margin-top:2px;">The Recall · The Humanity Bureau · The Distorted</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-eyebrow" style="justify-content:center;">Let's connect</div>
+  <h2 class="contact-title">Open to <em>new opportunities</em></h2>
+  <p style="font-size:0.95rem; color:var(--muted); max-width:480px; margin:0 auto; line-height:1.7;">
+    Looking for a senior digital marketing or product marketing role where strategy, data, and creativity combine. Based in Hyderabad, open to remote and hybrid.
+  </p>
+  <div class="contact-links">
+    <a href="mailto:siripuram.prashanth@gmail.com" class="contact-link">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+      siripuram.prashanth@gmail.com
+    </a>
+    <a href="tel:+919492781721" class="contact-link">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+      +91 94927 81721
+    </a>
+    <a href="https://in.linkedin.com/in/prashanthsiripuram" target="_blank" class="contact-link">
+      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      LinkedIn Profile
+    </a>
+    <a href="https://in.linkedin.com/in/prashanthsiripuram" target="_blank" class="contact-link">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+      Hyderabad, India
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2025 Prashanth Siripuram · Built as a digital portfolio · siripuram.prashanth@gmail.com
+</footer>
+
+<script>
+  // Scroll reveal for experience items
+  const items = document.querySelectorAll('.exp-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 120);
+      }
+    });
+  }, { threshold: 0.15 });
+  items.forEach(item => observer.observe(item));
+
+  // Skill blocks stagger on scroll
+  const skillBlocks = document.querySelectorAll('.skill-block');
+  const skillObs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '0';
+        entry.target.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          entry.target.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, i * 80);
+        skillObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  skillBlocks.forEach(b => { b.style.opacity = '0'; skillObs.observe(b); });
+
+  // Win cards stagger
+  const winCards = document.querySelectorAll('.win-card');
+  const winObs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, i * 80);
+        winObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  winCards.forEach(c => {
+    c.style.opacity = '0';
+    c.style.transform = 'translateY(16px)';
+    winObs.observe(c);
+  });
+</script>
+</body>
+</html>
